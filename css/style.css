@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    margin-top: 180px;
+    margin-left: 25%;
+    margin-right: 25%;
+
+    font-family: Work Sans, sans-serif;
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 50px 0;
+    overflow: hidden;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 50%;
+    display: flex;
+    justify-content: right;
+
+    font-family: Work Sans, sans-serif;
+    font-size: 2em;
+}
+
+.navbar li {
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+.navbar li:first-child {
+    position: absolute;
+    left: 20px;
+    font-weight: 600;
+}
+
+.navbar li a {
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    color: #888;
+}
+
+
+h1 {
+    font-size: 3em;
+    text-align: left;
+    margin-top: 50px;
+    font-weight: 500;
+}
+
+p {
+    font-size: 1.5em;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+a {
+    color: orangered;
+}
+
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create a grid with 3 columns */
+    gap: 20px; /* Add some gap between the images */
+}
+
+.image-item img {
+    width: 100%; /* Make the images responsive */
+    height: auto;
+}
+
+footer {
+    margin-top: 50px;
+
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: #333;
+
+    height: 200px;
+
+    font-family: Work Sans, sans-serif;
+}
+
+footer h3 {
+    font-size: 2em;
+}
+
+.footer-left h3, .footer-right p {
+    margin: 0;
+    padding: 0;
+}
+
+.footer-left p {
+    margin-bottom: 10px;
+    font-size: 1.25em;
+}
+
+.social-icons img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+
+    height: 100%;
+    width: 50%;
+}
+
+.footer-right img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.footer-right a {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: orangered;
+}
+
+.education-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.education-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Add some space between the items */
+}
+
+.achievement {
+    background-color: #f8f8f8; /* Add a background color */
+    padding: 10px;
+
+    font-weight: 600;
+    font-size: 1.5em;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.achievement img {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+}
+
+.institution {
+    padding: 10px;
+    margin-left: 20px;
+
+    font-size: 400;
+    font-size: 1.25em;
+}
+
+/* **** */
+
+.about-me-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-me-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Add some space between the items */
+}
+
+.about-me-achievement {
+    background-color: #f8f8f8; /* Add a background color */
+    padding: 10px;
+
+    font-weight: 600;
+    font-size: 1.75em;
+}
+
+.about-me-description {
+    padding: 10px;
+    margin-left: 20px;
+
+    font-size: 400;
+    font-size: 1.5em;
+}
