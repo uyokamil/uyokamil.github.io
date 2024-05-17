@@ -77,12 +77,14 @@ body {
     background-color: #fff;
     position: fixed;
     top: 0;
-    width: 80%;
+    width: 100%;
 
     font-family: Work Sans, sans-serif;
     font-size: 2em;
 
     display: none;
+
+    z-index: 1;
 }
 
 .mobile-static ul {
@@ -91,13 +93,17 @@ body {
     top: 0;
     margin: 0;
     padding: 0;
+    width: 80%;
 }
 
 .mobile-static li {
     display: block;
-    color: #333;
-    text-align: center;
+    text-align: left !important;
     padding: 14px 16px;
+}
+.mobile-static li a {
+    color: #333 !important;
+    text-decoration: none;
 }
 
 .mobile-static li:first-child {
@@ -154,6 +160,8 @@ body {
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+
+    z-index: 999;
 }
 
 .mobile-navbar ul {
