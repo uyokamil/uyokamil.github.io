@@ -10,6 +10,13 @@ body {
     font-family: Work Sans, sans-serif;
 }
 
+@media screen and (max-width: 1400px) {
+    body {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
 .navbar {
     list-style-type: none;
     margin: 0;
@@ -18,10 +25,12 @@ body {
     background-color: #fff;
     position: fixed;
     top: 0;
-    width: 50%;
+    width: 100%;
 
     font-family: Work Sans, sans-serif;
     font-size: 2em;
+
+    z-index: 9999;
 }
 
 .navbar-ul {
@@ -30,6 +39,7 @@ body {
     top: 0;
     margin: 0;
     padding: 0;
+    width: 50%;
 }
 
 .navbar li {
@@ -67,7 +77,7 @@ body {
     background-color: #fff;
     position: fixed;
     top: 0;
-    width: 50%;
+    width: 80%;
 
     font-family: Work Sans, sans-serif;
     font-size: 2em;
@@ -95,7 +105,10 @@ body {
     left: 0;
     font-weight: 600;
     text-align: left;
-    z-index: -1;
+    z-index: 1;
+}
+.mobile-static li:last-child {
+    z-index: 10;
 }
 
 .mobile-static li a:hover {
@@ -137,7 +150,7 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #f8f8f8;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -194,56 +207,115 @@ a {
 
 
 .image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Create a grid with 3 columns */
-    gap: 20px; /* Add some gap between the images */
+    display: flex;
+    flex-direction: column;
+}
+
+.image-grid a {
+    text-decoration: none;
 }
 
 .image-item {
-    position: relative;
-    width: 100%;
-    height: auto;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px; /* Add some space between the items */
+    background-color: #f8f8f8;
+    padding: 20px;
+
+    color: #000;
 }
 
-.image-item img {
-    width: 100%;
-    height: auto;
-}
-
-.image-item .card {
-    transition: 0.2s ease;
-}
-
-.overlay {
+/* Date */
+.image-item .date {
+    display: block;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.2s ease;
+    text-align: left;
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+
+    padding: 10px;
+    margin-left: -10px;
+
+    z-index: 99;
 }
 
-.image-item:hover .overlay {
-    opacity: 1;
+.image-item .cover-image {
+    width: 30%;
+    height: 30%;
+    object-fit: cover;
+    margin-right: 20px;
 }
 
-.image-item:hover .card {
-    transform: scale(1.05);
-    filter: brightness(30%);
+/* Text Section */
+.image-item .text-section {
+    width: 70%;
+    padding-left: 10px; /* Add some space between the image and the text */
+    font-size: 12px;
 }
+
+/* Title in the Text Section */
+.image-item .text-section .title {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+.card-info ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+}
+.card-info table td {
+    padding: 5 0 5 0;
+    padding-top: -10px;
+}
+.card-info table tr:nth-child(even) * {
+    background-color: #e5e7eb;
+}
+
+/* ********************************** */
+/* FOOTER */
+/* ********************************** */
 
 footer {
     margin-top: 50px;
-
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
+
     padding: 20px;
     color: #333;
-
-    height: 200px;
+    height: auto;
 
     font-family: Work Sans, sans-serif;
+}
+
+.footer-right, .footer-left {
+    width: 100%;
+    text-align: center;
+}
+
+@media screen and (min-width: 1400px) {
+    footer {
+        flex-direction: row;
+        height: 200px;
+    }
+    .footer-right, .footer-left {
+        width: 50%;
+        text-align: right;
+    }
+    .footer-left {
+        text-align: left;
+    }
+
+    .footer-right {
+        align-items: flex-end;
+    }
+    .footer-right > .email-text {
+        display: block !important;
+    }
 }
 
 footer h3 {
@@ -269,7 +341,7 @@ footer h3 {
 .footer-right {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
 
     height: 100%;
@@ -277,15 +349,16 @@ footer h3 {
 }
 
 .footer-right img {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     margin-bottom: 10px;
 }
 
-.footer-right a {
+.footer-right > .email-text {
     font-size: 1.5em;
     font-weight: 500;
     color: orangered;
+    display: none;
 }
 
 .education-grid {
@@ -445,8 +518,9 @@ footer h3 {
 }
 
 .portfolio-info table {
-    width: 50%;
+    width: 100%;
     font-size: 1.25em;
+    border-collapse: collapse;
 }
 .portfolio-info table td {
     padding: 10px;
@@ -460,4 +534,44 @@ footer h3 {
 .portfolio-description {
     width: 100%;
     padding: 20px;
+}
+.portfolio-description p, li {
+    margin-top: 10px;
+    color: #333;
+    font-size: 18px;
+    font-family: 'Calibri', sans-serif;
+    margin-left: 20px;
+    text-indent: -5px;
+}
+
+.portfolio-description h2 {
+    font-weight: 600;
+    background-color: #f3f3f3;
+    padding: 10px 0px;
+
+    font-size: 28px;
+    padding-left: 20px;
+
+    margin-bottom: -5px;
+}
+.portfolio-description .iframe-container {
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 30%;
+}
+
+.portfolio-description .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.portfolio-description img {
+    position: relative;
+    margin: 0 auto;
+    max-width: 100%;
 }

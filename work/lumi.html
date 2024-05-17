@@ -12,6 +12,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/cpp.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </head>
 <body>
     <header>
@@ -52,7 +59,7 @@
     </div>
     <h1>Lumi: Starbound Adventure</h1>
     <main>
-        <div class="portfolio-info">
+        <div class="portfolio-info" style="width: 30% !important">
             <table>
                 <tr>
                     <td>Team Size <img src="../img/work/icons/user.png" alt="Icon" style="height:16px; width:16px;"></td>
@@ -74,7 +81,158 @@
         </div>
         
         <div class="portfolio-description">
-            <p>Your project description goes here...</p>
+            <p>
+                Lumi: Starbound Adventure is a 3D action/adventure platformer game developed in Unreal Engine 5. The game is set in a vibrant world, where the player must navigate by moving floating platforms.
+                <br><br>
+                The game was developed over 6 months by a team of 5, with me as the lead programmer and game designer.
+                <br><br>
+                If you wish to try the vertical slice of Lumi: Starbound Adventure, <a href="#download-lumi">you can download the demo here.</a>
+            </p>
+            <br><br>
+            <h2>Overview</h2>
+            <p>
+                The objective of this project was to create a vertical slice of a game and secure funding. We successfully obtained two rounds of government funding, and our project received national recognition, coverage in indie magazines, and significant social media publicity. We showcased Lumi: Starbound Adventure at three game expos, where it garnered positive reactions from the public.
+                <br><br>
+                In Lumi: Starbound Adventure, players control Lumi as she navigates a dynamic game world by moving floating platforms. The game combines silly platforming elements with the immersive feel of a familiar-yet-alien world. Lumi can jump, dash, and flip to scale mountains and cross large rivers.
+            </p>
+            <h2>My Role on the Project</h2>
+            <p>
+                As the lead programmer and company director on our team of five, I played a pivotal role in the development of Lumi: Starbound Adventure. My responsibilities included overseeing the entire programming process, ensuring seamless integration of gameplay mechanics, and managing the overall project direction. This dual role required a blend of technical expertise and leadership skills, demonstrating my capability to both work within and effectively run a team.
+            </p>
+            <h2>Programming and Technical Challenges</h2>
+            <p>
+                In Lumi: Starbound Adventure, players embark on a gravity-defying journey through vibrant cosmic worlds, manipulating floating platforms to create their own paths. Implementing these mechanics demanded robust C++ programming, particularly in handling real-time physics and collision detection. I tackled complex issues such as platform movement and rotation, ensuring smooth and responsive gameplay. My deep understanding of C++ allowed me to optimize performance, addressing challenges like memory management and multi-threading to maintain a consistent frame rate.
+            </p>
+            <h2>Leadership and Team Coordination</h2>
+            <p>
+                As the company director, I fostered a collaborative environment where each team member’s contributions were valued and aligned with our project goals. I coordinated tasks, facilitated regular team meetings with the assistance of my co-director, and ensured clear communication across all departments. My leadership ensured that we stayed on track, met deadlines, and maintained a high standard of quality throughout the development process.
+            </p>
+            <h2>Project Achievements</h2>
+            <p>
+                Under my guidance, our team successfully secured two rounds of government funding and gained national recognition. Our project was featured in indie magazines and received significant social media publicity. We also showcased Lumi: Starbound Adventure at three game expos, where it received overwhelmingly positive reactions from the public. This success highlights my ability to lead a team to achieve ambitious goals and deliver a polished, innovative gaming experience.
+            </p>
+            <br>
+            <h2>Detailed Overview Article</h2>
+            <p>
+                In this article, I go over some challenges I was faced with when programming Lumi: Starbound Adventure, and how I solved them.
+            </p><p>
+                The idea for Lumi: Starbound Adventure started as an items-based platformer, like a metroidvania. We knew we wanted some parts of Ratchet & Clank, but both of us were huge fans of classic platformers like Mario Sunshine and Banjo Kazooie. Slowly, the game drifted smoothly into place with its theme: Space, Exploration, Platforming. The earliest recorded form of the game when we had a basic laid out idea can be seen in this video: (video)
+            </p><p>
+                The controls felt floaty, spacey. It was intentional, but it didn’t feel intentional.
+            </p><p>
+                For a good while we thought we wanted to stay with the whole “items” idea, but we didn’t feel like it was too gripping (pun intended; you’ll get it later). We experimented with placing various mechanics into classic platformer scenarios, such as moving & rotating blocks, 2D sections, and random basic enemies. An early preview of a playground level we made can be seen in this video:
+            </p>
+            <div class="iframe-container"><iframe src="https://www.youtube.com/embed/Aq296jRrUCY?si=zLQIfgGPyVYaM_hC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <p>
+                We were honing in on something, but there still wasn’t a crazy interesting part to this game. We had gotten rid of the idea of items, it was just a platformer now. But it didn’t have anything going for it… except, well, it had the platforms. Then we figured, what if we flip the format? A platformer where you set the platforms, rather than them existing in a floating void. Once I implemented the ability to grab (grip; get it now?) platforms and move them wherever the players wanted, and feedback came back positive, we knew we had it.
+            </p><p>
+                We started sketching a world.
+            </p>
+            <img src="../img/work/lumi/sketches.png" alt="Lumi Sketches">
+            <p>
+                The technical part of making the platforms move the way they should was no easy feat. Quaternions suck, but doing them made me realize just how much Quaternions rule. The rotation math was deviously simple to implement, and only focuses on a few key concepts. The platforms had to rotate exactly as the camera saw them.
+            </p>
+            <pre><code class="language-cpp">
+// Rotating the platform horizontally
+FQuat UComponent::RotateHorizontal(AActor* PlatformActor, float Angle)
+{
+    // Create a rotation quaternion using the UpVector and the specified angle in radians
+    FQuat RotationQuaternion = FQuat(FVector::UpVector, FMath::DegreesToRadians(Angle));
+
+    // Multiply the rotation quaternion with the current rotation quaternion of the platform actor
+    FQuat NewRotation = RotationQuaternion * PlatformActor->GetActorQuat();
+
+    return NewRotation;
+}
+
+// Rotating the platform vertically
+FQuat UComponent::RotateVertical(AActor* CameraActor, AActor* PlatformActor, float Angle)
+{
+    // Create a rotation quaternion using the RightVector of the camera actor and the specified angle in radians
+    FQuat CameraRightQuaternion = FQuat(CameraActor->GetActorRightVector(), FMath::DegreesToRadians(Angle));
+
+    // Multiply the rotation quaternion with the current rotation quaternion of the platform actor
+    FQuat NewRotation = CameraRightQuaternion * PlatformActor->GetActorQuat();
+
+    return NewRotation;
+}
+                </code></pre>
+                <p>
+                    All it needed was an axis and an angle; the rest happened in a timeline in blueprints, like calling and animating the wanted rotation. But it wasn’t the solution itself that took a long time, it was the figuring out <i>how</i> it should rotate. The very question posed more questions, like
+                </p>
+                <ul>
+                    <li>“How are players trying to rotate the platforms?”</li>
+                    <li>“How do we make it so that the platforms rotate in a way that makes sense?”</li>
+                    <li>“How are the players reacting to the way the platforms are rotating?”</li>
+                </ul>
+                <p>
+                    It was important to me for it to make sense. We showcased the game multiple times, and the end result was that the public’s reaction came back positive. As the world was coming together conceptually, the level had to come together as well. My next focus was on level design, and the interactions therein.
+                </p>
+                <img src="../img/work/lumi/level_design.png" alt="Lumi Level Design">
+                <p>
+                    A game like this required careful thought. We realized that what we wanted to do with the platforms was essentially creating an open world puzzle that never had a set solution. The intention was to make every solution valid.
+                </p>
+                <p>
+                    So, as with any good movement puzzle, it needed good movement.
+                </p>
+                <p>
+                    The first step was to figure out, once again, what a jump was. What did the jump look like as a curve? Was it fast going up, then slow on the way down? I went through a lot of variations. Eventually, one stuck.
+                </p>
+                <div class="iframe-container"><iframe src="https://www.youtube.com/embed/lo6yjAq-mZY?si=lPEH9CjpAfWHdKih" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <p>
+                    The next step was to figure out how the jump interacted with the world. The platforms were thin, which lent them well to grabbing… well, in more ways than already possible. We wanted the player to grab everything; platforms, walls, edges. This part was easy to start with, as initially things in the world were blocky. But, once our artists started rendering meshes, and adding slopes, dents, and other imperfections, the edge grabbing broke.
+                </p>
+                <p>
+                    I came up with a twofold solution to the problem:
+                </p>
+                <ul>
+                    <li>Make grabbable edges sharp and intentional.</li>
+                    <li>Add some leeway to what can be grabbed.</li>
+                </ul>
+                <img src="../img/work/lumi/edge_grabbing.png" alt="Lumi Edge Grabbing">
+                <p>
+                    I worked with our environment artist to finalize the best possible grabbable rocks that could still pass as “rocks.” Coming up with a system that lets players grab any object in the world was a challenge, and it’s still not perfect, but I think the interaction goes quite well. The edge grabbing also had a special “jump up” move to let players easily “climb up” the ledge they were holding. We opted for this to be dynamic rather than animation based given the infinite possibilities of rotations and scenarios. I was only one man, who had to code, and do the animations. We only had six months to complete the demo. It was tough, but decisions were made.
+                </p>
+                <p>
+                    The decision did come with a unique problem, though:
+                    Rectangular Prism Meets Capsule
+                </p>
+                <img src="../img/work/lumi/lumi_collision.png" alt="Lumi Edge Grabbing Problem">
+                <p>
+                    When upwards motion was applied to the player (Capsule), the radial nature of it would unfortunately, albeit very smoothly, knock the player backwards. Like a ramp. I experimented with various scenarios, even for a while attempting to go with the “climb up” animation method, but in the end I settled for a risky one: for a brief moment when you perform an edge jump, the player’s collisions disable. Since the initial motion goes so forcefully upwards, and the player starts with 0 velocity, they cannot generate enough X/Y velocity while in the air to clip into anything meaningful. Unreal’s Chaos Physics handles the rest, and even if the player would clip ever so gently into an object, it just shoves them right out.
+                </p>
+                <br>
+                <p>
+                    Another challenge I faced was the camera movement. At first, there was none. Actually, for a long time there was none. Our playtesters also didn’t have much to say when it came to camera movement (or lack thereof), but once the game was showcased to the public we realized just how important these were.
+                </p>
+                <p>
+                    The game’s movement was precision based, and the camera couldn’t forcefully move the player too much. During playtesting, I identified the main issue players were struggling with: turning the camera sideways when moving sideways. For some reason, even players adept with dual-stick controls struggled when it came to precisely landing on objects to their side without (not painlessly) aligning their cameras first, then finding out that it still wasn’t good enough and failing their jumps. This was especially apparent when players were bouncing away on the spring platforms, because direction wasn’t always a certainty, and you had to think fast.
+                </p>
+                <p>
+                    In the end I opted for a very, very simple camera turning assist to help players orient themselves when walking and bouncing around. The camera does absolutely no vertical adjustment, because we found players didn’t really struggle with it. Additionally, given the verticality of the world and its puzzles, sometimes you just had to look up or look down all the time. Resetting the vertical rotation of the camera became annoying.
+                </p>
+                <div class="iframe-container"><iframe src="https://www.youtube.com/embed/EWGWddMLFks?si=8nbfXsd9w-qenfP2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <p>
+                    I would love to go on and on about what I did on this game, because the list really feels endless. But, unfortunately, our time has come to an end. Though, your time has just begun! You can download it here to play the game for yourself!
+                </p>
+                <p>
+                    PC Requirements: RTX 1080, 8GB RAM, i5-6600K
+                </p>
+                <h3 style="padding-left: 15px;" id="download-lumi"><a href="https://drive.google.com/file/d/1YXPvSe6UrYYgQ727Nh587LTKvQYFdP8W/view?usp=sharing" target="_blank" style="font-size: 1.5em;">Download Lumi: Starbound Adventure Demo</a></h3>
+                <p>
+                    The controls on-screen are meant for controllers only and do not dynamically change, but the game is fully playable on M&KB. Here are the keyboard inputs:
+                </p>
+                <ul>
+                    <li>WASD - Move</li>
+                    <li>Mouse - Look</li>
+                    <li>Space - Jump</li>
+                    <li>Left Ctrl - Dash</li>
+                    <li>Shift - Sprint</li>
+                    <li>Tab - “Athena” Mode (Moving platforms)</li>
+                    <li>Left Mouse - Attack / Grab (in Athena Mode)</li>
+                    <li>Right Mouse (Hold) - Rotation Mode (in Athena Mode)</li>
+                    <li>Arrow Keys - Rotate (in Rotation Mode) / Push-Pull (in Athena Mode)</li>
+                </ul>
         </div>
     </main>
     
@@ -88,8 +246,8 @@
             </div>
         </div>
         <div class="footer-right">
-            <img src="../img/icons/email.png" alt="Email">
-            <a href="mailto:kamilpczarnecki@gmail.com">kamilpczarnecki@gmail.com</a>
+            <a href="mailto:kamilpczarnecki@gmail.com"><img src="../img/icons/email.png" alt="Email"></a>
+            <a href="mailto:kamilpczarnecki@gmail.com" class="email-text">kamilpczarnecki@gmail.com</a>
         </div>
     </footer>
 </body>

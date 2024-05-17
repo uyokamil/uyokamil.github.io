@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamil Czarnecki | Portfolio</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+    <script src="../js/mobilenavbar.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/csharp.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <ul class="navbar-ul">
+                <li>Kamil Czarnecki</li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    
+        <!-- Mobile Navbar -->
+        <nav class="mobile-navbar">
+            <ul class="mobile-navbar-ul">
+                <li>Kamil Czarnecki</li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <a href="javascript:void(0);" class="close-navbar-button" onclick="closeMobileNavbar()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+        </nav>
+        <nav class="mobile-static">
+            <ul class="mobile-navbar-ul">
+                <li>Kamil Czarnecki</li>
+                <li><a href="javascript:void(0);" class="mobile-navbar-button" onclick="openMobileNavbar()">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </a></li>
+            </ul>
+        </nav>
+        </header>
+
+    <div class="portfolio-header">
+        <iframe frameborder="0" src="https://itch.io/embed-upload/10395820?color=333333" allowfullscreen="" width="1152" height="668"><a href="https://uyoo.itch.io/dishdash">Play DishDash on itch.io</a></iframe>
+    </div>
+    <h1>DishDash</h1>
+    <main>
+        <div class="portfolio-info">
+            <table>
+                <tr>
+                    <td>Team Size <img src="../img/work/icons/user.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Project Duration <img src="../img/work/icons/timer.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>1 week</td>
+                </tr>
+                <tr>
+                    <td>Target Platform <img src="../img/work/icons/monitor.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>PC (Web)</td>
+                </tr>
+                <tr>
+                    <td>Engine / Language <img src="../img/work/icons/cog.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>Unity / C#</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="portfolio-description">
+            <p>
+                DishDash is a game made in less than a week as a break from my Inventory System <a href="../work/inventory.html">(read about that here.)</a>
+            </p>
+            <p>
+                Developing "DishDash" presented several unique challenges, pushing my skills in game development, problem-solving, and time management. One of the biggest hurdles was designing a flexible and efficient system for handling food objects and their combinations, like in "Overcooked!". I conceptualized and implemented a structure based on Unity’s ScriptableObjects, allowing each food item to have defined properties, preparation methods, and potential combinations. This approach streamlined the development process, ensuring that the system was both robust and easy to extend for future content.
+            </p>
+            <p>
+                Another significant challenge was the constraint of creating the game within a single week. I created a small deadline for myself because I primarily wanted to experiment with object dynamics, again relating to the Inventory System. This tight deadline forced me to do rapid prototyping and iterative testing. I faced and overcame these time constraints by employing agile development techniques, focusing on core functionalities first, and progressively adding more complex features. This method allowed me to maintain a steady pace and make sure that the game remained playable and enjoyable throughout its development. I also employed my partner and my friends to playtest the game along the way.
+            </p>
+            <p>
+                While I am proud of what I accomplished with "DishDash," there are aspects I would approach differently in future projects. For instance, I centered the combination logic around the countertops rather than the items themselves. Although this design choice worked, I believe managing the combinations directly through the items would have streamlined the process and provided greater flexibility for extension and growth. This insight is very valuable for my improvement as a developer, guiding my decisions in future projects to create even more efficient and scalable systems.
+            </p>
+            <p>
+                Through these challenges, I demonstrated strong problem-solving skills, effective time management, and the ability to adapt quickly to new requirements and constraints. My experience with Unity and C# was crucial in delivering a polished product within the given timeframe. This project underscored my capability to take on complex tasks and deliver high-quality results, reinforcing my expertise and commitment to excellence in game development.
+            </p>
+            <p>
+                Play it for yourself just above, watch this clip, or read the detailed article below.
+            </p>
+            <div class="iframe-container"><iframe src="https://www.youtube.com/embed/E89Jo1yV2wU?si=CVm2Vd5gXJ_wZZVS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <br>
+            <h2>Creating DishDash</h2>
+            <p>
+                The first step was to create an expandable FoodObject that <i>served</i> three things:
+            </p>
+            <ul>
+                <li>Represent a food: ID, Mesh, and Sprite</li>
+                <li>Have a possible preparation method, and a preparation result (another FoodObject).</li>
+                <li>An array of possible combinations and combination results with the FoodObject.</li>
+            </ul>
+            <p>
+                This source system was very simple, because the FoodObject arithmetic could at any gislaven time only ever be 1+1. One combination->One combination result. One preparation method->One preparation result.
+            </p>
+            <pre><code class="language-csharp">
+            public class FoodObject : ScriptableObject
+            {
+                [Header("Food Details")]
+                public string foodIdentifier;
+                public FoodType foodType;
+            
+                [Header("Food Object")]
+                public GameObject foodPrefab;
+                public Sprite foodSprite;
+            
+                [Header("Preparation")]
+                public PreparationMethod preparationMethod;
+                public PreparationSpeed preparationSpeed;
+                public FoodObject preparationResult;
+            
+                [Header("Combinations")]
+                public FoodObject[] combineWith;
+                public FoodObject[] combineResult;
+            }
+            </code></pre>
+            <p>
+                Since a ScriptableObject can’t be placed in the world, I needed a “carrier.” For lack of a better name, I called this a KitchenObject. 
+            </p>
+            <pre><code class="language-csharp">
+            public class KitchenObject : MonoBehaviour
+            {
+            [Header("Defaults")]
+            [SerializeField] protected FoodObject defaultFoodObject = null;
+
+            [Header("Food Object")]
+            [SerializeField] protected FoodObject foodObject;
+            [SerializeField] protected GameObject foodGameObject;
+            public bool bPlate;
+
+            [Header("Base Object")]
+            [SerializeField] protected GameObject plateGameObject;
+            [SerializeField] protected Transform foodObjectTransform;
+
+            [Header("Pizza")]
+            protected List<GameObject> toppingObjects;
+            }
+            </code></pre>
+            <p>
+                A KitchenObject was a prefab that had two children: A Plate object, and a “Food Object Transform.”
+            </p>
+            <p>
+                As mentioned before, since FoodObject arithmetic could only be 1+1, I needed a way to add another variable to the equation: Plate, or No Plate. The plate object was simply a plate mesh that was either active, or not active. We’re never creating or destroying new plates when combining objects together.
+            </p>
+            <p>
+                Now you might have noticed an extra property at the bottom, here. Pizza Topping Objects. As I was making the second level in the game, Paulie’s Pizzeria, I figured out that the 1+1 arithmetic became a little… much. So I thought about how I could simplify it for myself, and the answer was to have a special case when it came to pizza. So a new “recipe” was born:
+            </p>
+            <ul>
+                <li>Dough + Sauce = Pizza Base.</li>
+                <li>Pizza Base + Cheese = Margherita.</li>
+            </ul>
+            <p>
+                Then I just had to “add toppings” instead of “combine” if you wanted to add an object to a “raw margherita,” i.e. just instantiating new objects parented to the margherita. The PizzaObject class was born, simply extending from FoodObject. It contained one extra field:
+            </p>
+            <pre><code class="language-csharp">
+            [Header("Pizza Order")]
+            public List<FoodObject> toppings;                
+            </code></pre>
+            <p>Of course, this could have other applications: sandwiches with multiple contents. Soups. This would be the intended implementation for all of those things. In my case, I only needed it for pizzas, and labelled it as such.</p>
+            <pre><code class="language-csharp">
+            // Produce the result of this kitchen object's combination via the given index.
+            public virtual bool Combine(KitchenObject kitchenObject, int combinationIndex, CounterTop _refCounter = null)
+            {
+                if (foodObject.foodIdentifier.Contains("margherita") && foodObject.foodIdentifier.Contains("raw"))
+                {
+                    AddTopping(this, kitchenObject.GetFoodObject().combineResult[combinationIndex]);
+                    return true;
+                }
+                else if (kitchenObject.GetFoodObject().foodIdentifier.Contains("margherita") && kitchenObject.GetFoodObject().foodIdentifier.Contains("raw"))
+                {
+                    if (AddTopping(kitchenObject, kitchenObject.GetFoodObject().combineResult[combinationIndex]))
+                    {
+                        if (_refCounter != null)
+                        {
+                            _refCounter.InitCounterTop(kitchenObject);
+                        }
+
+                        return true;
+                    }
+                }
+                else
+                {
+                    Init(kitchenObject.GetFoodObject().combineResult[combinationIndex], (kitchenObject.bPlate || bPlate));
+                    return true;
+                }
+                return false;
+            }
+            </code></pre>
+            <p>
+                This method handles the combination and produces a re-initialization of the item with the new given FoodObject at the combinationIndex. But this isn’t where the combination happens. In fact, none of the KitchenObjects handle their own interactions – for this project, I also set a limitation: objects could only be placed on surfaces. You cannot place KitchenObjects on the floor, or throw them, or similar. You must simply place them on a counter space. There was no real reason for this decision, it was just a decision I made. If I were to remake  this, I would likely prefer for items to be place-able on the floor and other places than just counters. KitchenObjects would simply have their own collision checks and perform actions on themselves. Though, I only had a week to produce this whole game – once a choice was made, it was made!
+            </p>
+            <p>
+                So, how did this work practically? Well, it needed a countertop.
+            </p>
+            <pre><code class="language-csharp">
+            public class CounterTop : MonoBehaviour, IInteractable
+            {
+                [SerializeField]
+                protected KitchenObject defaultObject; // Variable to store the default KitchenObject that is on the CounterTop
+            
+                [SerializeField]
+                protected Transform FoodLocationTransform; // Variable to store the spawn location for FoodObjects
+            
+                protected KitchenObject CounterObject; // Variable to store the KitchenObject that is currently on the CounterTop
+
+                /* ... */
+            }        
+            </code></pre>
+            <p>
+                The defaultObject field was the in-engine solution to pre-initialize the counter with a KitchenObject. This is used in two of the levels to initialize with an empty plate sitting on top of it. But it’s the interaction method where things really get a little complex…
+            </p>
+            <pre><code class="language-csharp">
+            public virtual InteractionResponse Interact(KitchenObject inKitchenObject = null)
+            &lt;summary&gt;
+            /// This method represents the interaction between the player and the CounterTop.
+            /// It takes an optional KitchenObject as an argument, which represents the object the player wants to interact with.
+            /// The method returns an InteractionResponse struct, which contains the result of the interaction and the KitchenObject involved in the interaction.
+            /// The method first checks if an object is provided for interaction.
+            /// If an object is provided, it checks if the CounterTop already has an object.
+            /// If the CounterTop has an object, it checks various conditions to determine the type of interaction and performs the necessary actions accordingly.
+            /// If the CounterTop does not have an object, it places the provided object on the CounterTop.
+            /// If no object is provided, it checks if the CounterTop has an object and removes it from the CounterTop.
+            /// Finally, it returns the InteractionResponse struct with the appropriate result and KitchenObject.
+            /// &lt;/summary&gt;
+            /// &lt;returns&gt;An InteractionResponse struct relating to what happened during the interaction.&lt;/returns&gt;
+            {
+                InteractionResponse interactionResponse = new InteractionResponse();
+                interactionResponse.Result = InteractionResult.None;
+            
+                // If an object is provided for interaction
+                if (inKitchenObject != null)
+                {
+                    // If the CounterTop already has an object
+                    if (CounterObject != null)
+                    {
+                        // Interaction: Counter has a Plate, Counter has no FoodObject
+                        if (CounterObject.bPlate && CounterObject.GetFoodObject() == null)
+                        {
+                            // Interaction: Counter has a Plate and no FoodObject, inKitchenObject has no Plate and a FoodObject
+                            if (!inKitchenObject.bPlate && inKitchenObject.GetFoodObject() != null)
+                            {
+                                // Initialize the CounterObject with the FoodObject from inKitchenObject and set the Plate flag to true
+                                CounterObject.Init(inKitchenObject.GetFoodObject(), true);
+                                interactionResponse.Result = InteractionResult.CombinedByPlayer;
+                                return interactionResponse;
+                            }
+                        }
+                        // Interaction: Player has no FoodObject, Player has a Plate, Counter has no Plate, Counter's FoodObject has no PreparationMethod
+                        else if (inKitchenObject.GetFoodObject() == null && inKitchenObject.bPlate && !CounterObject.bPlate && CounterObject.GetFoodObject().preparationMethod == PreparationMethod.None)
+                        {
+                            // Initialize the CounterObject with its own FoodObject and set the Plate flag to true
+                            CounterObject.Init(CounterObject.GetFoodObject(), true);
+                            interactionResponse.Result = InteractionResult.CombinedByPlayer;
+                            return interactionResponse;
+                        }
+                        // Interaction: Counter's FoodObject can be combined with Player's FoodObject
+                        else if (CounterObject.GetFoodObject().combineWith.Length > 0)
+                        {
+                            if (CounterObject.bPlate && inKitchenObject.bPlate)
+                                interactionResponse.KitchenObject = CounterObject;
+            
+                            // Combine the FoodObjects and return the result
+                            if (CombineFoodObjects(inKitchenObject))
+                            {
+                                interactionResponse.Result = InteractionResult.CombinedByPlayer;
+                                return interactionResponse;
+                            }
+                            interactionResponse.KitchenObject = null;
+                        }
+                        // Interaction: Player has no FoodObject
+                        else if (inKitchenObject.GetFoodObject() == null)
+                        {
+                            return interactionResponse;
+                        }
+                        // Interaction: Player's FoodObject can be combined with Counter's FoodObject
+                        else if (inKitchenObject.GetFoodObject().combineWith.Length > 0)
+                        {
+                            if (CounterObject.bPlate && inKitchenObject.bPlate)
+                                interactionResponse.KitchenObject = CounterObject;
+            
+                            // Combine the FoodObjects and return the result
+                            if (CombineFoodObjects(inKitchenObject))
+                            {
+                                interactionResponse.Result = InteractionResult.CombinedByPlayer;
+                                return interactionResponse;
+                            }
+                            interactionResponse.KitchenObject = null;
+                        }
+                    }
+                    else
+                    {
+                        // Place the inKitchenObject on the CounterTop
+                        inKitchenObject.PlaceObjectInParent(FoodLocationTransform);
+                        CounterObject = inKitchenObject;
+            
+                        interactionResponse.Result = InteractionResult.PlacedByPlayer;
+                        return interactionResponse;
+                    }
+                }
+                else
+                {
+                    if (CounterObject != null)
+                    {
+                        // Take the CounterObject from the CounterTop
+                        interactionResponse.KitchenObject = CounterObject;
+                        CounterObject = null;
+            
+                        interactionResponse.Result = InteractionResult.TakenByPlayer;
+                        return interactionResponse;
+                    }
+                }
+            
+                return interactionResponse;
+            }                
+            </code></pre>
+            <p>
+                There’s a lot going on here, but it’s quite simple to unpack. We’re comparing two things: CounterObject (the KitchenObject that already is on the counter) and the InKitchenObject (the object the player is holding). From the bottom:
+            </p>
+            <ul>
+                <li>If the InKitchenObject does not exist, and the CounterObject does exist: We take the CounterObject.</li>
+                <li>If the InKitchenObject does exist, but the CounterObject does not: We place the InKitchenObject.</li>
+                <li>Otherwise, we perform a series of checks to figure out our next steps to combine the two.
+                    <ul>
+                        <li>The first two conditions are asking if there’s no food but there’s a plate, then we just place the food on the plate.</li>
+                        <li>The following conditions are asking if either the InKitchenObject or the CounterObject have combinations, and if they are the other item.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>
+                The reason for the final conditions is because the combinations aren’t present on both items, for simplicity. What this means is this:
+            </p>
+            <p>
+                Let’s say I have a Burger Patty. The burger patty can be combined with:
+            </p>
+            <ul>
+                <li>Cheese -> Patty with Cheese</li>
+                <li>Lettuce -> Patty with Lettuce</li>
+                <li>Burger Bun -> Patty with Burger Bun</li>
+            </ul>
+            <p>
+                However, “Cheese” does <b>not</b> have any combinations in itself. If it did, I would be repeating myself a lot when creating the items, and there would be a lot more room for error and complexity. Rather, when we’re placing items on the counter, we don’t know which of the two items actually are the “source” one, the one that has the combination recipe. So we’re just checking both of them.
+            </p>
+            <p>
+                This is the interaction for the generic counter space. That’s pretty much the bulk of what happens when you place or take items on the counter. However, we’ve actually got a few more definitions of “counter,” and all of them rely on this base class.
+            </p>
+            <p>
+                Here’s an example of this. This is an automatic prep station:
+            </p>
+            <pre><code class="language-csharp">
+            public override InteractionResponse Interact(KitchenObject inKitchenObject = null)
+            /// <summary>
+            /// Overrides the Interact method from the base class CounterTop.
+            /// Handles the interaction between the player and the CT_AutomaticPrep object.
+            /// Checks if the object being interacted with is a plate and if it has the correct food preparation method.
+            /// Calls the base class' Interact method to handle placing or removing the object from the counter.
+            /// Starts or stops the progress of the food preparation based on the interaction.
+            /// </summary>
+            /// <param name="inKitchenObject"></param>
+            /// <returns></returns>
+            {
+                // Check if the object is/has a plate. should not be able to place a plate on the stove.
+                if (inKitchenObject == null)
+                {
+                    InteractionResponse placeResponse = base.Interact(inKitchenObject);
+                    if (placeResponse.Result == InteractionResult.TakenByPlayer)
+                    {
+                        OnItemRemoved(inKitchenObject);
+                    }
+                    return placeResponse;
+                }
+            
+                if (inKitchenObject.GetFoodObject() == null)
+                {
+                    InteractionResponse intResponse = new InteractionResponse();
+                    intResponse.Result = InteractionResult.None;
+                    return intResponse;
+                }
+            
+                if (inKitchenObject.GetFoodObject().preparationMethod == preparationMethod)
+                {
+                    // Call the parent class' Interact() method
+                    InteractionResponse placeResponse = base.Interact(inKitchenObject);
+                    if (placeResponse.Result == InteractionResult.PlacedByPlayer)
+                    {
+                        OnItemPlaced(inKitchenObject);
+                    }
+                    else if (placeResponse.Result == InteractionResult.TakenByPlayer)
+                    {
+                        OnItemRemoved(inKitchenObject);
+                    }
+                    if (inKitchenObject.bPlate)
+                    {
+                        placeResponse.Result = InteractionResult.PlacedObjectByPlayer;
+                    }
+                    return placeResponse;
+                }
+                else
+                {
+                    InteractionResponse intResponse = new InteractionResponse();
+                    intResponse.Result = InteractionResult.None;
+                    return intResponse;
+                }
+            }                 
+            </code></pre>
+            <p>
+                Then I’m using a coroutine to progress cooking status on the Automatic Prep station. An example of an Automatic Prep station is the frying pan in the Burger level.
+            </p>
+            <p>
+                Beyond this, we have a few singletons in the scene:
+            </p>
+            <p>
+                A <b>ConveyorBeltManager</b>, which handles the returning of plates. Once you send off a plate via a “send-off” conveyor belt, it sends a message to the ConveyorBeltManager letting it know to find the first available “dirty plate return” conveyor belt and send a dirty plate back.
+            </p>
+            <p>
+                An <b>OrderManager</b>, which handles adding new orders and checking if orders are completed. Once food is sent off, the ConveyorBelt tells the ConveyorBeltManager, and the ConveyorBeltManager tells the OrderManager to check the order. The scoring system is arbitrary and simply adds a random value between 10 and 30 per completed dish.
+            </p>
+            <p>An <b>Order</b> that handles its own timer.</p>
+            <p>And, of course, a <b>LevelManager</b> that handles the level timer, score, and win/loss conditions.</p>
+            <h2>Additional Features</h2>
+            <p>In the background, you’ll notice some NPCs having discussions over their food. I spent a little bit creating a simple NPC generator that picks between 4 hairstyles, 4 hair colors, 4 skin colors, and 4 clothing (shirt & pants) colors. The script is a little brutalistic but I’m happy that it works so seamlessly.</p>
+            <pre><code class="language-csharp">
+            // Create dynamic material for the shirt
+            Material shirtMaterial = new Material(materialReference);
+            shirtMaterial.color = shirtColor;
+
+            Material[] shirtMaterials = shirt.GetComponent<Renderer>().sharedMaterials;
+            shirtMaterials[0] = shirtMaterial;
+            shirt.GetComponent<Renderer>().sharedMaterials = shirtMaterials;
+            </code></pre>
+            <p>
+                A few layers of polish and making sure to account for many (not all) edge cases, and the game is pretty good. Try it for yourself back at the top of the page if you haven’t already, and thank you for reading!
+            </p>
+            <p>
+                If you have any questions or feedback, or if you’re looking to create a similar system and want guidance or to hear more about things in this project I wouldn’t do again, I’m available via email: kamilpczarnecki@gmail.com
+            </p>
+            <p>
+                Kamil
+            </p>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-left">
+            <h3>Get in Touch</h3>
+            <p>Reach out to me via my email,<br>connect with me on LinkedIn, or shoot me a message on X.</p>
+            <div class="social-icons">
+                <a href="https://twitter.com/kamil_gdev" target="_blank"><img src="../img/icons/twitter.png" alt="Twitter"></a>
+                <a href="https://www.linkedin.com/in/kamilpczarnecki/" target="_blank"><img src="../img/icons/linkedin-logo.png" alt="LinkedIn"></a>
+            </div>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:kamilpczarnecki@gmail.com"><img src="../img/icons/email.png" alt="Email"></a>
+            <a href="mailto:kamilpczarnecki@gmail.com" class="email-text">kamilpczarnecki@gmail.com</a>
+        </div>
+    </footer>
+</body>
+</html>

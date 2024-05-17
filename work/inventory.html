@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamil Czarnecki | Portfolio</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+    <script src="../js/mobilenavbar.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/cpp.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <ul class="navbar-ul">
+                <li>Kamil Czarnecki</li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    
+        <!-- Mobile Navbar -->
+        <nav class="mobile-navbar">
+            <ul class="mobile-navbar-ul">
+                <li>Kamil Czarnecki</li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <a href="javascript:void(0);" class="close-navbar-button" onclick="closeMobileNavbar()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+        </nav>
+        <nav class="mobile-static">
+            <ul class="mobile-navbar-ul">
+                <li>Kamil Czarnecki</li>
+                <li><a href="javascript:void(0);" class="mobile-navbar-button" onclick="openMobileNavbar()">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </a></li>
+            </ul>
+        </nav>
+        </header>
+
+    <div class="portfolio-header">
+        <iframe src="https://www.youtube.com/embed/s3s2buxROFs?si=fo5IHsw_yWFBXmuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <h1>Replicated UObject Inventory System (& GAS)</h1>
+    <main>
+        <div class="portfolio-info">
+            <table>
+                <tr>
+                    <td>Team Size <img src="../img/work/icons/user.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Project Duration <img src="../img/work/icons/timer.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>&lt; 1 month</td>
+                </tr>
+                <tr>
+                    <td>Target Platform <img src="../img/work/icons/monitor.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>PC</td>
+                </tr>
+                <tr>
+                    <td>Engine / Language <img src="../img/work/icons/cog.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>Unreal Engine 5 / C++</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="portfolio-description">
+            <p>
+            Developing this replicated UObject inventory system presented several challenges that required innovative solutions to ensure robust functionality. One major challenge was creating an extendable unified item class for network simplicity, which I solved by implementing a static item class. Another significant hurdle was managing efficient data replication over the network. By utilising Unreal Engine's ActorChannels and FastArraySerializer, I achieved reliable data synchronisation. These and other challenges were systematically addressed, resulting in a comprehensive and efficient inventory system. The system consists of a few key components:
+            </p>
+            <ul>
+                <li>The inventory system consists of variable items that can hold extensive amounts of features, special event handling, and gameplay tags.</li>
+                <li>Item instances to support dynamically created items and item additions (item mods, upgrades, ammo capacity, etc.)</li>
+                <li>The items are placed in an inventory component, which can be used by players, NPCs, and Actors for different purposes (player inventory, NPC inventory, storage containers, etc.)</li>
+                <li>An optional equipment component handles Player and Non-Player equipment, including weapons and armour.</li>
+                <li>Dropped items support smooth replication for both their item instance as well as position over the network.</li>
+            </ul>
+            <p>
+            An additional layer to this project is the Gameplay Ability System (GAS), which also extends and utilises many networking principles. GAS is a hugely important building block to Unreal Engine, and its open-ended nature lends itself for almost any game.
+            </p>
+            <p>
+            To lay the groundwork for this project, I asked myself what a replicated inventory system needed.  
+            </p>
+            <ul>
+                <li>Item System</li>
+                <ul>
+                    <li>An extendable unified item class that every item could derive from.</li>
+                    <li>An easy way to create items in the editor and place them in the game world.</li>
+                </ul>
+                <li>Inventory System</li>
+                <ul>
+                    <li>An easy way to store large amounts of items for multiple players efficiently and effectively.</li>
+                    <li>A way to reliably perform inventory operations with self-authority over the network.</li>
+                    <li>A way to reliably display the information for the client.</li>
+                </ul>
+                <li>Equipment System</li>
+                <ul>
+                    <li>A way to equip items visually across the network seamlessly between first and third-person models.</li>
+                    <li>Use gameplay tags and GAS to apply data to actors with equipped items.</li>
+                </ul>
+            </ul>
+            <p>
+                The first problem was an interesting one. An extendable unified item class that every item could derive from. There are many, many ways you can accomplish this goal, but this is what I did.
+            </p>
+            <h2>I: The Items</h2>
+            <pre><code class="language-cpp">
+            UCLASS(BlueprintType, Blueprintable)
+            class UStaticItemData : public UObject
+            {
+                GENERATED_BODY()
+
+            public:
+
+                UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item")
+                FName ItemName;
+
+                UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item")
+                FGameplayTagContainer ItemTags;
+
+                UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item")
+                UStaticMesh* ItemMesh;
+
+                UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item")
+                UTexture2D* ItemIcon;
+
+                UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item")
+                bool bCanBeStacked = true;
+
+                // EquipmentTypeTag is used to determine what type of equipment this item is.
+                // Also used to determine whether it can or cannot be equipped.
+                UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item")
+                EEquipmentSlot EquipmentSlot;
+
+                // AttachmentSocketName is used to determine the attachment socket on the character mesh when equipped.
+                UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item")
+                FName AttachmentSocketName = NAME_None;
+
+                UFUNCTION()
+                bool CanBeEquipped() const { return EquipmentSlot != EEquipmentSlot::None; }
+            };                
+            </code></pre>
+            <p>
+                Future extensions I have planned for this class are what I’d call “modules.” A special structure that lets you add additional gameplay tags for functionality. You could do it like this:
+            </p>
+            <pre><code class="language-cpp">
+            UENUM(BlueprintType)
+            enum class EModifierType : uint8
+            {
+                Add UMETA(DisplayName = "Add"),
+                Multiply UMETA(DisplayName = "Multiply"),
+                Set UMETA(DisplayName = "Set")
+            };
+            USTRUCT(BlueprintType)
+            struct FItemModule
+            {
+                GENERATED_BODY();
+
+                UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "GameplayTagModifier")
+                FGameplayTag Tag;
+
+                UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "GameplayTagModifier")
+                EModifierType ModifierType;
+
+                UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "GameplayTagModifier")
+                float Amount;
+                
+                FItemModule() : Tag(FGameplayTag::EmptyTag), ModifierType(EModifierType::Add), Amount(0.0f) {}
+
+                // Other potential types: Duration, Stackable, StackCount, AffectsOthers...
+                // Endless possibilities.
+            };                
+            </code></pre>
+            <p>
+                There’s two “widely accepted” ways of storing large amounts of data about items using Unreal Engine: Data Tables, and Data Assets. Data Tables (DT) are pretty good, and I like their ability to sync with spreadsheets. Though, this was a little limiting to me, and it’s quite a pain to make sure all references and structures line up within a spreadsheet. Modifying DTs in-engine was also a little… painful. Sometimes I’d click on a field and it would freeze the editor for a minute or two. This wasn’t my preferred ideal situation, so I opted for the latter: Data Assets (DA). DAs only real downside is that you need a separate physical asset per item, but it’s much more manageable and scalable – particularly when working on items with multiple people. It’s also easier to link references in-engine.
+            </p>
+            <p>
+                The UObject Items aren’t DAs, they’re just blueprints, but the effect is the same (UDataAsset extends from UObject). If you are implementing this yourself, do consider DAs because I think the UI turns out a little cleaner and more readable, but read up on UDataAssets yourself and find out if they’re a good fit for your project.
+            </p>
+            <p>
+                But now we need a way to store the objects at runtime. This class is a UObject, which unfortunately provides no default implementation for replication.
+            </p>
+            <p>
+                Unreal Engine supports two “first-class” types of replication for the networking system: Actors and Actor Components. This is fantastic, and is virtually all you need for almost every possible scenario: both support replicated properties, can be safely created/destroyed at runtime, and support RPC calls.
+            </p>
+            <p>
+                However, Unreal’s network code replicates data (including RPC calls) across the network using ActorChannels – which, unfortunately, is only suitable for Actors. For a UObject to travel across the network, it needs to essentially “ride along” with an Actor on its channel.
+            </p>
+            <p>
+                Fortunately for us, utilising this ActorChannel actually goes hand-in-hand with our items functionality, because we don’t want the items to forever be static. We want instances of items, random number generation, modifiers. You’ll also find that our static item class provides no support for item stacking and quantity, or any way to store meaningful runtime data (because, well, it is static). As such, we need to create an item instance class that lets us dynamically modify these things.
+            </p>
+            <pre><code class="language-cpp">
+            UCLASS(BlueprintType, Blueprintable)
+            class GAME_API UItemInstance : public UObject
+            {
+                GENERATED_BODY()
+            
+            public:
+                virtual void Init(TSubclassOf&lt;UStaticItemData&gt; InStaticItemDataClass);
+            
+                virtual bool IsSupportedForNetworking() const override
+                {
+                    return true;
+                }
+            
+                UFUNCTION(BlueprintCallable, BlueprintPure)
+                const UStaticItemData* GetStaticItemData() const;
+            
+                UPROPERTY(Replicated)
+                int32 ItemQuantity = 1;
+            
+                UPROPERTY(ReplicatedUsing = OnRep_Equipped)
+                bool bEquipped = false;
+            
+                virtual void OnEquipped(AActor* InOwner = nullptr);
+                virtual void OnUnequipped();
+                virtual void OnDropped(AActor* InOwner = nullptr, int32 Amount = 1);
+            
+                UFUNCTION()
+                void OnRep_Equipped();
+            
+            protected:
+                UPROPERTY(Replicated)
+                TSubclassOf&lt;UStaticItemData&gt; StaticItemDataClass;
+            
+                UPROPERTY(Replicated)
+                AItemActor* ItemActor = nullptr;
+            
+                UPROPERTY(Replicated)
+                AEquippedItemObject* EquippedItemObject = nullptr;
+            };
+        </code></pre>
+        <p>
+            You’ll notice a few key things in this class: it’s another UObject, but this time we’re using a native UObject function IsSupportedForNetworking(). This is telling our AActor to include this object when moving data across the network ActorChannel.
+        </p>
+        <p>
+            There are also some baseline inclusions for features such as equipping and dropping. The ItemInstance class can be thought of as the meeting point for all references in all future systems. Everything we want to do with an item, we might as well ask the item to do itself, as it knows best what it can do. This also helps save on bandwidth, because we only need to call simple functions across the network, and since we’re replicating the item already, the item might as well sort itself out personally.
+        </p>
+        <p>
+            The first way we’re storing ItemInstances was in their world actor class. I needed to come up with a way to reliably display an item in the world that all players could interact with and pick up, grab, etc.
+        </p>
+        <pre><code class="language-cpp">
+            UCLASS()
+            class GAME_API AItemActor : public AActor, public IInteractionInterface
+            {
+                GENERATED_BODY()
+                
+            public:	
+                AItemActor();
+            
+                void Init(UItemInstance* InInstance, int32 Amount);
+            
+                FORCEINLINE UItemInstance* GetItemInstance() const { return ItemInstance; }
+            
+                virtual bool ReplicateSubobjects(class UActorChannel *Channel, class FOutBunch *Bunch, FReplicationFlags *RepFlags) override
+                {
+                    bool WroteSomething = Super::ReplicateSubobjects(Channel, Bunch, RepFlags);
+                    WroteSomething |= Channel->ReplicateSubobject(ItemInstance, *Bunch, *RepFlags);
+                    return WroteSomething;
+                }
+            
+            
+                // Interaction //
+                virtual void BeginFocus() override;
+                virtual void EndFocus() override;
+            
+            protected:
+                UPROPERTY(Replicated)
+                UItemInstance* ItemInstance = nullptr;
+            
+                UPROPERTY(EditAnywhere)
+                TSubclassOf<UStaticItemData> StaticItemDataClass;
+            
+                UPROPERTY(VisibleAnywhere, Category = "Pickup | Components")
+                UStaticMeshComponent* ItemMeshComponent;
+            
+                UPROPERTY(ReplicatedUsing = OnRep_ItemState)
+                EItemState ItemState = EItemState::None;
+            
+            #if WITH_EDITOR
+                virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+            #endif
+            };            
+        </code></pre>
+        <p>
+            There are three central ways in which the ItemActor works.
+        </p>
+        <ul>
+            <li>It uses ReplicateSubobjects to zoom UObjects over the network.</li>
+            <li>It has a physics based movement replicated StaticMesh as its root object which extends an InteractionInterface.</li>
+            <li>It can be both spawned and hand-placed.</li>
+        </ul>
+        <p>
+            <b>ReplicateSubobjects</b> Here, we’re finally using the ActorChannel. As the ItemActor extends from AActor, we’ve got full access to networking its parts. We’re focusing on sending the data bits of the ItemInstance across the channel.
+        </p>
+        <p>
+            <b>Spawning and Placing</b> An important part of this was being able to actually hand-place items in the world. Currently we only have a way to create items in the editor, but as they’re UObjects (which are basically data structures), we couldn’t do much with them. All I needed to really care about when building in the editor for my Item was its Mesh. In the PostEditChangeProperty I'm only updating the mesh, so that I can place items exactly where I want them with a reliable visial representation.
+        </p>
+        <p>
+            The ItemActor, given its heavy presence in the world (physics, replication), needs to be lightweight. The only information stored in this class is the name, the amount, and the instance itself. I’m using and replicating the name and amount here to quickly be able to show players hovering over this item.
+        </p>
+        <p>
+            The rest of the functions bounce right back to the player. Interacting with it sends a message to the item, essentially confirming that it’s still valid and wants to be interacted with, then bounces that back to the player saying to add the instance to their inventory and destroys itself.
+        </p>
+        <h2>II: The Inventory</h2>
+        <p>
+            The first step was to create a network efficient storage system that lets us send as little data as possible with maximal results. To accomplish this, I used a FastArraySerializer. A FastArraySerializer is a replicated array solution that ONLY updates the data it has to. This saves us on both memory usage (we don’t need to access the entire pointer chain), and bandwidth, as we’re only sending limited data. I needed a FastArraySerializerItem first.
+        </p>
+        <pre><code class="language-cpp">
+            USTRUCT(BlueprintType)
+            struct FInventoryListItem : public FFastArraySerializerItem
+            {
+                GENERATED_BODY()
+            
+            public:
+                UPROPERTY()
+                UItemInstance* ItemInstance = nullptr;
+            
+                // Overloading the equality operator for sorting
+                bool operator==(const FInventoryListItem& Other) const
+                {
+                    return ItemInstance == Other.ItemInstance;
+                }
+            
+                bool IsSupportedForNetworking() const { return true; }
+            };            
+        </code></pre>
+        <p>Then, the array:</p>
+        <pre><code class="language-cpp">
+            USTRUCT(BlueprintType)
+            struct FInventoryList : public FFastArraySerializer
+            {
+                GENERATED_BODY()
+            
+            public:
+                bool NetDeltaSerialize(FNetDeltaSerializeInfo & DeltaParms)
+                {
+                    return FFastArraySerializer::FastArrayDeltaSerialize<FInventoryListItem, FInventoryList>(Items, DeltaParms, *this);
+                }
+            
+                FInventoryOperationResult* AddItem(TSubclassOf<UStaticItemData> InStaticItemDataClass, int32 Amount);
+                FInventoryOperationResult* AddItem(UItemInstance* InItemInstance);
+            
+                FInventoryOperationResult* RemoveItem(TSubclassOf<UStaticItemData> InStaticItemDataClass, int32 Amount);
+                FInventoryOperationResult* RemoveItem(UItemInstance* InItemInstance);
+                FInventoryOperationResult* RemoveItem(int32 SlotID, int32 Amount);
+            
+                bool SortAlphabetical();
+            
+                FORCEINLINE TArray<FInventoryListItem>& GetItemsRef() { return Items; }
+            
+                int32 GetSlotIndex(UItemInstance* ItemInstance) const;
+            
+            protected:
+                UPROPERTY()
+                TArray<FInventoryListItem> Items;
+            
+                int32 MaxStackSize = 999;
+            };            
+        </code></pre>
+        <p>
+            I’m using a few function overloads when it comes to handling items, because sometimes I need to perform inventory operations from strange places, and this gives me freedom to avoid pointless referencing.
+        </p>
+        <p>
+            You’ll notice the array itself is actually a struct – so this array needs to live somewhere. In my case, it lives in my InventoryComponent. This is a bigger class, so I’ll break it down into smaller parts. First, the initialization:
+        </p>
+        <pre><code class="language-cpp">
+            UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+            class GAME_API UInventoryComponent : public UActorComponent
+            {
+                GENERATED_BODY()
+
+            public:	
+                UInventoryComponent(const FObjectInitializer& ObjectInitializer);
+
+                virtual void InitializeComponent() override;
+
+                virtual bool UInventoryComponent::ReplicateSubobjects(class UActorChannel* Channel, class FOutBunch* Bunch, FReplicationFlags* RepFlags) override {
+                    bool WroteSomething = Super::ReplicateSubobjects(Channel, Bunch, RepFlags);
+
+                    for (FInventoryListItem& Item : InventoryList.GetItemsRef())
+                    {
+                        UInventoryItemInstance* ItemInstance = Item.ItemInstance;
+
+                        if (IsValid(ItemInstance))
+                        {
+                            WroteSomething |= Channel->ReplicateSubobject(ItemInstance, *Bunch, *RepFlags);
+                        }
+                    }
+
+                    return WroteSomething;
+                }
+
+                void UInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+                {
+                    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+                    DOREPLIFETIME(UInventoryComponent, InventoryList);
+                }
+        </code></pre>
+        <p>
+            I’m using a UActorComponent native function, InitializeComponent, to set up values such as owner, and loading any items. I’m also using the same function from AItemActor, ReplicateSubobjects, to make sure the inventory contents are being moved across the network. Then we have our actual inventory:
+        </p>
+        <pre><code class="language-cpp">
+            protected:
+                UPROPERTY(Replicated)
+                FInventoryList InventoryList;
+
+            public:
+                FORCEINLINE FInventoryList& GetInventoryList() { return InventoryList; }
+
+                UFUNCTION(BlueprintCallable)
+                void AddItem(TSubclassOf<UStaticItemData> InStaticItemDataClass, int32 Amount);
+                UFUNCTION(BlueprintCallable)
+                void AddItemInstance(UItemInstance* InItemInstance, int32 Amount);
+
+                UFUNCTION(BlueprintCallable)
+                void RemoveItem(TSubclassOf<UStaticItemData> InStaticItemDataClass, int32 Amount);
+                UFUNCTION(BlueprintCallable)
+                void RemoveItemFromSlotID(int32 SlotID, int32 Amount);
+        </code></pre>
+        <p>
+            The reason these functions have different names is because Blueprints don’t support overloading, and these functions should be blueprint callable. As such, they needed new names, but they are just relays for the actual inventory array functions with an authority check.
+        </p>
+        <p>
+            We’re making sure the request is handled by an authority, which is handled via RPCs. The reason these functions aren’t RPCs in themselves or send any, is because these functions are usually called by certain events that in themselves are RPCs, such as “Interact.” When we’re performing these functions the caller is already handling authority representation (server, in this case), because we’re destroying and creating items. For Inventory UI, I'm also using a delegate to broadcast any inventory changes.
+        </p>
+        <pre><code class="language-cpp">
+            DECLARE_MULTICAST_DELEGATE_OneParam(FOnInventoryUpdated, int32 /*Slot ID*/);
+            // ...code...
+            // Delegate
+            FOnInventoryUpdated OnInventoryUpdated;
+            UFUNCTION(NetMulticast, Reliable)
+            void Multicast_OnInventoryUpdatedDelegate(int32 SlotID = -1);
+        </code></pre>
+        <p>
+            Some functions in the InventoryComponent are used as relays to the EquipmentComponent, which is detailed just below this. This is an example of such a function:
+        </p>
+        <pre><code class="language-cpp">
+            void UInventoryComponent::EquipItemRelay(UItemInstance* InItemInstance)
+            {
+                // There's no owner check here. We're checking for the owner in the EquipmentComponent as that's where all the magic happens.
+                // The inventory is just a relay for this function (Equip gets called from an InventoryItem->InventoryComponent).
+                if (InItemInstance->GetStaticItemData()->CanBeEquipped())
+                {
+                    if (EquipmentComponent)
+                    {
+                        EquipmentComponent->EquipItem(InItemInstance);
+                    }
+                    else
+                    {
+                        UE_LOG(LogTemp, Warning, TEXT("Actor's Equipment Component not found. Did you forget to add one?"));
+                        // EquipmentComponent not found
+                    }
+                }
+            }            
+        </code></pre>
+        <h2>III: The Equipment System</h2>
+        <p>
+            The equipment system, or the UEquipmentComponent, is important due to the modularity of the system. If you haven’t noticed yet, none of the aforementioned parts require a Player. They can exist on anything, and work on an inter-actor basis. The system can extend to move items between inventories quite easily using the existing methods.
+        </p>
+        <p>
+            The equipment system is another modular piece to this puzzle, and is suited for usage on any Character, Player or Non-Player. It starts with some pointers.            
+        </p>
+        <pre><code class="language-cpp">
+            protected:
+                UPROPERTY(Replicated)
+                ACharacter* OwnerCharacter;
+            
+                UPROPERTY(Replicated)
+                UInventoryComponent* InventoryComponent;
+            
+                // Equipment slots
+                UPROPERTY(Replicated)
+                UItemInstance* EquippedWeaponInstance = nullptr;
+            
+                UPROPERTY(Replicated)
+                UItemInstance* EquippedHelmetInstance = nullptr;
+            
+                UPROPERTY(Replicated)
+                UItemInstance* EquippedChestInstance = nullptr;
+            
+                UPROPERTY(Replicated)
+                UItemInstance* EquippedLegsInstance = nullptr;
+            
+                UPROPERTY(Replicated)
+                UItemInstance* EquippedBootsInstance = nullptr;
+        </code></pre>
+        <p>The EquipmentComponent, cruciall, contains very little unique information. It serves as a crossroads for systems, a relay of sorts. Some of such relay functions can be seen here:</p>
+        <pre><code class="language-cpp">
+            UFUNCTION(BlueprintCallable)
+            void EquipItem(UItemInstance* InItem);
+            UFUNCTION(Server, Reliable)
+            void Server_HandleEquipItem(UItemInstance* InItem);
+
+            void UEquipmentComponent::HandleEquipInternal(UItemInstance* InItem)
+            {
+                // Even if the item was valid, make sure it still is. Packet loss or similar events can cause the item to be invalid, so I’m just making extra sure.
+                // Authors note: this is a bit overkill, as the item should be valid if it was valid when it was equipped.
+                // Also using a reliable server RPC call to equip the item, so it should be valid. But, better safe than sorry.
+                if (InItem->GetStaticItemData() && InItem->GetStaticItemData()->CanBeEquipped())
+                {
+                    EEquipmentSlot EquipmentSlot = InItem->GetStaticItemData()->EquipmentSlot;
+
+                    // Here I’m using a pointer to a pointer to an ItemInstance so that we can modify the original pointer.
+                    UItemInstance** EquippedInstance = nullptr;
+
+                    switch (EquipmentSlot)
+                    {
+                    case EEquipmentSlot::Head:
+                        EquippedInstance = &EquippedHelmetInstance;
+                        break;
+                    case EEquipmentSlot::Chest:
+                        EquippedInstance = &EquippedChestInstance;
+                        break;
+                    case EEquipmentSlot::Legs:
+                        EquippedInstance = &EquippedLegsInstance;
+                        break;
+                    case EEquipmentSlot::Feet:
+                        EquippedInstance = &EquippedBootsInstance;
+                        break;
+                    case EEquipmentSlot::Weapon:
+                        EquippedInstance = &EquippedWeaponInstance;
+                        break;
+                    }
+
+                    // This check asks if the item is currently equipped, and if it is, we’re just unequipping it.
+                    if (EquippedInstance && *EquippedInstance == InItem)
+                    {
+                        UnequipItem(*EquippedInstance);
+                        return;
+                    }
+
+                    // Here we’re checking if another item occupies the slot it wants to equip to, and unequips the current occupier before proceeding.
+                    if (EquippedInstance && *EquippedInstance)
+                    {
+                        UnequipItem(*EquippedInstance);
+                    }
+
+                    if (EquippedInstance)
+                    {
+                        *EquippedInstance = InItem;
+                        InItem->OnEquipped(GetOwner());
+                    }
+                }
+            }
+        </code></pre>
+        <p>
+            In here there’s a few things I’m doing. First I’m making sure that the InItem can be equipped using a function that returns true if the EEquipmentSlot is not None. Then I’m getting which equipment slot the InItem wants to be in, and setting the “EquippedInstance” or the “Instance We Currently Want To Modify” to the address of the representative ItemInstance from its slot.
+        </p>
+        <p>
+            Finally I check if there are any conflicts:
+        </p>
+        <ul>
+            <li>If the item you want to equip is already equipped, we unequip it and return. This is because there’s no distinction between Equip and Unequip in the UI, there’s just input->event, so we’re handling it here.</li>
+            <li>If an item is already equipped in the slot you want to equip the new item, we unequip the old item first.</li>
+        </ul>
+        <p>
+            And that’s really it. The rest of the code happens on the items themselves. In an equip scenario, we just equip the item onto the representative Mesh of the character. For my player mesh, I’m using two meshes: A first person hands mesh and a third person body mesh. Though, to simplify the flow of things for myself as much as possible, these two meshes actually combine into a single mesh. The hands and body are separate, but will use the same animations. That way, first person players will only see the hands, and third person players will only see the body. This is a somewhat flawed approach, given that “lowering your weapon” might seem strange from a first person v third person view, and I’m sure there are better ways to approach it, but it works for me, for now.
+        </p>
+        <h2>IV: The Gameplay Ability System</h2>
+        <p>
+            The gameplay ability system is a plugin that I think is one of the most important parts of Unreal Engine’s game development persona. It lets you easily manage the player’s abilities in a way that respects all additional systems. In this systems demo, I’m using the gameplay abilities and gameplay tags for a lot of the gameplay bulk.
+        </p>
+        <p>Some use cases for GAS abilities:</p>
+        <ul>
+            <li>Sprinting</li>
+            <li>Crouching</li>
+            <li>Jumping</li>
+            <li>Attacking / shooting (weapon)</li>
+            <li>Throwing (throwable item)</li>
+            <li>Spellcasting</li>
+            <li>Breakdancing</li>
+        </ul>
+        <p>
+            Here’s what my base ability class looks like.
+        </p>
+        <pre><code class="language-cpp">
+            UCLASS()
+            class GAME_API UGameGameplayAbility : public UGameplayAbility
+            {
+                GENERATED_BODY()
+            
+            public:
+                virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
+                virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
+            
+            protected:
+                UPROPERTY(EditDefaultsOnly, Category = "Effects")
+                TArray<TSubclassOf<UGameplayEffect>> OngoingEffectsToRemoveOnEnd;
+            
+                UPROPERTY(EditDefaultsOnly, Category = "Effects")
+                TArray<TSubclassOf<UGameplayEffect>> OngoingEffectsToJustApplyOnStart;
+            
+                TArray<FActiveGameplayEffectHandle> RemoveOnEndEffectHandles;
+            
+                UFUNCTION(BlueprintCallable, BlueprintPure)
+                AGameCharacter* GetGameCharacterFromActorInfo() const;
+            };
+        </code></pre>
+        <p>Another great feature of GAS is Attribute Sets. Here are some from this project that I incorporated:</p>
+        <pre><code class="language-cpp">
+            UCLASS()
+            class GAME_API UGameAttributeSetBase : public UAttributeSet
+            {
+                GENERATED_BODY()
+                
+            public:
+            
+                UPROPERTY(BlueprintReadOnly, Category = "Health", Replicated = OnRep_Health)
+                FGameplayAttributeData Health;
+                ATTRIBUTE_ACCESSORS(UGameAttributeSetBase, Health)
+                
+                UPROPERTY(BlueprintReadOnly, Category = "Health", Replicated = OnRep_MaxHealth)
+                FGameplayAttributeData MaxHealth;
+                ATTRIBUTE_ACCESSORS(UGameAttributeSetBase, MaxHealth)
+            
+                UPROPERTY(BlueprintReadOnly, Category = "Stamina", Replicated = OnRep_Stamina)
+                FGameplayAttributeData Stamina;
+                ATTRIBUTE_ACCESSORS(UGameAttributeSetBase, Stamina)
+            
+                UPROPERTY(BlueprintReadOnly, Category = "Stamina", Replicated = OnRep_MaxStamina)
+                FGameplayAttributeData MaxStamina;
+                ATTRIBUTE_ACCESSORS(UGameAttributeSetBase, MaxStamina)
+            
+                UPROPERTY(BlueprintReadOnly, Category = "MovementSpeed", Replicated = OnRep_MaxMovementSpeed)
+                FGameplayAttributeData MaxMovementSpeed;
+                ATTRIBUTE_ACCESSORS(UGameAttributeSetBase, MaxMovementSpeed)
+            
+            protected:
+                virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
+            
+                UFUNCTION()
+                virtual void OnRep_Health(const FGameplayAttributeData& OldHealth);
+            
+                UFUNCTION()
+                virtual void OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth);
+            
+                UFUNCTION()
+                virtual void OnRep_Stamina(const FGameplayAttributeData& OldStamina);
+            
+                UFUNCTION()
+                virtual void OnRep_MaxStamina(const FGameplayAttributeData& OldMaxStamina);
+            
+                UFUNCTION()
+                virtual void OnRep_MaxMovementSpeed(const FGameplayAttributeData& OldMaxMovementSpeed);
+            };            
+        </code></pre>
+        <p>
+            With these, you can do fun tasks. For example, modifying the "Max Walking Speed" on the CharacterController is <b>not</b> a replicated change, and will cause desyncs and jittering. You can modify the CharacterController to include a "sprint" feature, <i>or</i> you can, for example, modify the Gameplay Attribute "MaxMovementSpeed" with a Gameplay Attribute Modifier. The product is dynamically being able to change movement speed with full replication. Simple, but out of the way!
+        </p>
+        <p>
+            The usefulness of GAS lies in its flexibility and scalability. GAS allows me to define, manage, and execute complex abilities without having to reinvent the wheel each time I add a new feature. It provides a robust framework for handling abilities, which includes cooldowns, costs, and activation requirements, all while being modular.
+        </p>
+        <p>
+            The development of this replicated UObject inventory system, with its solid item management and seamless network synchronization, highlights the power of Unreal Engine networking. Through solutions like the static item class, ActorChannels, and the FastArraySerializer, we achieved a dynamic and efficient system. This project not only meets current needs but also lays a strong foundation for future expansions, ensuring flexibility and scalability. The integration of the Gameplay Ability System further enriches the simplicity and scalability, demonstrating the versatility and potential of this comprehensive inventory system.
+        </p>
+        <p>
+            Thank you for reading this! I hope it was a good read, and you enjoyed hearing about my methods. If you’re looking to implement a similar system and have any questions or concerns, I’d love to help out or hear feedback: kamilpczarnecki.com
+        </p>
+        <p>
+            Kamil
+        </p>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-left">
+            <h3>Get in Touch</h3>
+            <p>Reach out to me via my email,<br>connect with me on LinkedIn, or shoot me a message on X.</p>
+            <div class="social-icons">
+                <a href="https://twitter.com/kamil_gdev" target="_blank"><img src="../img/icons/twitter.png" alt="Twitter"></a>
+                <a href="https://www.linkedin.com/in/kamilpczarnecki/" target="_blank"><img src="../img/icons/linkedin-logo.png" alt="LinkedIn"></a>
+            </div>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:kamilpczarnecki@gmail.com"><img src="../img/icons/email.png" alt="Email"></a>
+            <a href="mailto:kamilpczarnecki@gmail.com" class="email-text">kamilpczarnecki@gmail.com</a>
+        </div>
+    </footer>
+</body>
+</html>
