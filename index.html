@@ -7,20 +7,46 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
+    <script src="js/mobilenavbar.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
-        <nav>
-            <ul class="navbar">
-                <li>Kamil Czarnecki</li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul class="navbar-ul">
+            <li>Kamil Czarnecki</li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Navbar -->
+    <nav class="mobile-navbar">
+        <ul class="mobile-navbar-ul">
+            <li>Kamil Czarnecki</li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="javascript:void(0);" class="close-navbar-button" onclick="closeMobileNavbar()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </a>
+    </nav>
+    <nav class="mobile-static">
+        <ul class="mobile-navbar-ul">
+            <li>Kamil Czarnecki</li>
+            <li><a href="javascript:void(0);" class="mobile-navbar-button" onclick="openMobileNavbar()">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </a></li>
+        </ul>
+    </nav>
     </header>
 
     <h1>Hello! &#x1F44B;</h1>
@@ -28,30 +54,48 @@
         <br><br>
         Find out more about me on my <a href="about.html">About</a> page.
         <br><br>
-        Check out some of my recent projects below.</p>
-
+        Check out some of my recent projects below.
+    </p>
 
     <h1>Projects</h1>
     <main>
         <div class="image-grid">
-            <div class="image-item">
-                <a href="#"><img src="img/cards/lumi_card.png" alt="Image 1"></a>
-            </div>
-            <div class="image-item">
-                <a href="#"><img src="img/cards/inventory_card.png" alt="Image 2"></a>
-            </div>
-            <div class="image-item">
-                <a href="#"><img src="img/cards/dishdash_card.png" alt="Image 3"></a>
-            </div>
-            <div class="image-item">
-                <a href="#"><img src="img/cards/combat_demo_card.png" alt="Image 4"></a>
-            </div>
-            <div class="image-item">
-                <a href="#"><img src="img/cards/little_sapling_card.png" alt="Image 5"></a>
-            </div>
-            <div class="image-item">
-                <a href="#"><img src="img/cards/other_card.png" alt="Image 6"></a>
-            </div>
+            <a href="work/lumi.html">
+                <div class="image-item" data-overlay="img/logos/lumi_logo.png">
+                    <img class="card" src="img/cards/lumi_card.png" alt="Lumi: Starbound Adventure">
+                    <img class="overlay" src="img/logos/lumi_logo.png" alt="Overlay">
+                </div>
+            </a>
+            <a href="work/inventory.html">
+                <div class="image-item" data-overlay="img/logos/inventory_logo.png">
+                    <img class="card" src="img/cards/inventory_card.png" alt="Inventory Project">
+                    <img class="overlay" src="img/logos/inventory_logo.png" alt="Overlay">
+                </div>
+            </a>
+            <a href="work/dishdash.html">
+                <div class="image-item" data-overlay="img/logos/dishdash_logo.png">
+                    <img class="card" src="img/cards/dishdash_card.png" alt="DishDash">
+                    <img class="overlay" src="img/logos/dishdash_logo.png" alt="Overlay">
+                </div>
+            </a>
+            <a href="work/combatdemo.html">
+                <div class="image-item" data-overlay="img/logos/combat_demo_logo.png">
+                    <img class="card" src="img/cards/combat_demo_card.png" alt="Combat Demo">
+                    <img class="overlay" src="img/logos/combat_demo_logo.png" alt="Overlay">
+                </div>
+            </a>
+            <a href="work/littlesapling.html">
+                <div class="image-item" data-overlay="img/logos/little_sapling_logo.png">
+                    <img class="card" src="img/cards/little_sapling_card.png" alt="Little Sapling">
+                    <img class="overlay" src="img/logos/little_sapling_logo.png" alt="Overlay">
+                </div>
+            </a>
+            <a href="work/other.html">
+                <div class="image-item" data-overlay="img/logos/other_logo.png">
+                    <img class="card" src="img/cards/other_card.png" alt="Other Projects">
+                    <img class="overlay" src="img/logos/other_logo.png" alt="Overlay">
+                </div>
+            </a>
         </div>
     </main>
     <footer>
@@ -68,5 +112,15 @@
             <a href="mailto:kamilpczarnecki@gmail.com">kamilpczarnecki@gmail.com</a>
         </div>
     </footer>
+
+    <script>
+        window.onload = function() {
+            var items = document.querySelectorAll('.image-item');
+            items.forEach(function(item) {
+                var overlay = item.getAttribute('data-overlay');
+                item.style.setProperty('--overlay', 'url(' + overlay + ')');
+            });
+        }
+    </script>
 </body>
 </html>

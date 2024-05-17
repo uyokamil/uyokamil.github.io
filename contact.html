@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamil Czarnecki | Portfolio</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="js/mobilenavbar.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul class="navbar-ul">
+            <li>Kamil Czarnecki</li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Navbar -->
+    <nav class="mobile-navbar">
+        <ul class="mobile-navbar-ul">
+            <li>Kamil Czarnecki</li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="javascript:void(0);" class="close-navbar-button" onclick="closeMobileNavbar()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </a>
+    </nav>
+    <nav class="mobile-static">
+        <ul class="mobile-navbar-ul">
+            <li>Kamil Czarnecki</li>
+            <li><a href="javascript:void(0);" class="mobile-navbar-button" onclick="openMobileNavbar()">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </a></li>
+        </ul>
+    </nav>
+    </header>
+
+    <h1>Get in touch &#128236;</h1>
+    <main>
+        <section class="contact-section">
+            <div class="contact-intro">
+              <p class="contact-description">
+                Fill out the contact form and I'll get back to you as soon as possible.
+                <br><br>
+                Alternatively, reach out to me directly via email or LinkedIn (links below).
+              </p>
+            </div>
+          
+            <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contact">
+          
+              <input type="hidden" name="access_key" value="7cbd6a8a-f645-45f0-8d86-0f5f314da21e" />
+              <input type="hidden" name="subject" value="Portfolio Contact Form Submission" />
+              <input type="hidden" name="from_name" value="Kamil Czarnecki Portfolio" />
+          
+              <div class="form-group-container">
+                <div class="form-group">
+                  <label for="name" class="form-label">Name</label>
+                  <input id="name" name="name" class="form-input" placeholder="Your name" type="text" />
+                </div>
+                <div class="form-group">
+                  <label for="email" class="form-label">Email</label>
+                  <input id="email" name="email" class="form-input" placeholder="Your email" type="email" />
+                </div>
+                <div class="form-group">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea class="form-textarea" id="message" name="message" placeholder="Your message"></textarea>
+                </div>
+              </div>
+              <br>
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+              <button class="form-submit" type="submit">Send Message</button>
+            </form>
+          
+          </section>
+    </main>
+    
+    <footer>
+        <div class="footer-left">
+            <h3>Get in Touch</h3>
+            <p>Reach out to me via my email,<br>connect with me on LinkedIn, or shoot me a message on X.</p>
+            <div class="social-icons">
+                <a href="https://twitter.com/kamil_gdev" target="_blank"><img src="img/icons/twitter.png" alt="Twitter"></a>
+                <a href="https://www.linkedin.com/in/kamilpczarnecki/" target="_blank"><img src="img/icons/linkedin-logo.png" alt="LinkedIn"></a>
+            </div>
+        </div>
+        <div class="footer-right">
+            <img src="img/icons/email.png" alt="Email">
+            <a href="mailto:kamilpczarnecki@gmail.com">kamilpczarnecki@gmail.com</a>
+        </div>
+    </footer>
+</body>
+</html>
