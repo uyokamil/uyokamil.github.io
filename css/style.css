@@ -248,6 +248,12 @@ a {
     margin-right: 20px;
 }
 
+.image-item iframe.cover-image {
+    width: 50%;
+    height: auto;
+    aspect-ratio: 16/9;
+}
+
 /* Text Section */
 .image-item .text-section {
     width: 70%;
