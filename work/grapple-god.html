@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamil Czarnecki | Portfolio</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+    <script src="../js/mobilenavbar.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/cpp.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <ul class="navbar-ul">
+                <li><a href="../index.html">Kamil Czarnecki</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    
+        <!-- Mobile Navbar -->
+        <nav class="mobile-navbar">
+            <ul class="mobile-navbar-ul">
+                <li><a href="../index.html">Kamil Czarnecki</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <a href="javascript:void(0);" class="close-navbar-button" onclick="closeMobileNavbar()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+        </nav>
+        <nav class="mobile-static">
+            <ul class="mobile-navbar-ul">
+                <li><a href="../index.html">Kamil Czarnecki</a></li>
+                <li><a href="javascript:void(0);" class="mobile-navbar-button" onclick="openMobileNavbar()">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </a></li>
+            </ul>
+        </nav>
+        </header>
+
+    <div class="portfolio-header">
+        <iframe src="https://www.youtube.com/embed/1-ywNIVyB1Q?si=G-r-TaW-iaGyHUPp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <h1>Grapple God</h1>
+    <main>
+        <div class="portfolio-info">
+            <table>
+                <tr>
+                    <td>Team Size <img src="../img/work/icons/user.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Project Duration <img src="../img/work/icons/timer.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>3 days</td>
+                </tr>
+                <tr>
+                    <td>Target Platform <img src="../img/work/icons/monitor.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>PC</td>
+                </tr>
+                <tr>
+                    <td>Engine / Language <img src="../img/work/icons/cog.png" alt="Icon" style="height:16px; width:16px;"></td>
+                    <td>Unreal Engine 5 / C++</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="portfolio-description">
+            <p>
+                During SpeedJam #5, a Game Jam about creating the best “speedrunable” game, our team of three—Kamil Czarnecki (me; programming), Hugo Belperron (art), and Clyphdrops (music/sfx)—created a fast-paced, dynamic grapple hook game titled "Grapple God." The game, developed over an intense 72-hour period, garnered exceptional feedback for its fun mechanics and exhilarating gameplay.
+            </p>
+            <p>
+                <a href="https://siropfraisecitron.itch.io/grapple-god" target="_blank">Download and play the game on itch.io.</a>
+            </p>
+            <h2>Concept</h2>
+            <p>
+                "Grapple God" challenges players to speedrun their way out of hell using a grappling hook to navigate and climb a treacherous tower and slay demons by crashing into them at high speed. The gameplay is a blend of precision, strategy, and quick reflexes, demanding players to master the art of momentum and timing.
+            </p>
+            <p>
+                As the lead programmer, I was responsible for developing the core gameplay mechanics and ensuring the game's performance and stability. Utilizing Unreal Engine 5 and C++, I implemented the grappling hook system, enemy AI, collision and trace detection, as well as implementing everything in-engine. Key aspects of my contributions included:
+            </p>
+            <ul>
+                <li><b>Grappling Hook Mechanics</b> - Developed a physics-based grappling hook system that allowed for dynamic interactions with the environment. This involved creating smooth, responsive controls and ensuring the hook pendulum movement physics were realistic and fun.</li>
+                <li><b>Collision and Damage System</b> - Designed and implemented a collision detection system to manage interactions between the player, demons, and environmental objects. Also adding in elements for game feel, such as slowing down time when eliminating demons, or other effects.</li>
+                <li><b>Performance Optimization</b> - Optimized code and game assets to ensure smooth performance across various hardware configurations. With the time constraint in mind I used the profiler to locate the heaviest performers in the game. Mostly, these were Unreal default features that I had to disable to ensure the game ran smoothly on various devices.</li>
+            </ul>
+
+            <img src="../img/work/grapple_god/gif1.gif" alt="Gameplay Gif 1" style="width: 450px;">
+            <img src="../img/work/grapple_god/gif2.gif" alt="Gameplay Gif 2" style="width: 450px;">
+
+            <h2>Challenges and Solutions</h2>
+
+            <p>
+                The rapid development timeline posed several challenges.
+            </p>
+            <p>
+                With only 72 hours to develop the game, efficient time management and prioritization were crucial. We adopted an agile development approach, allowing us to iterate quickly and incorporate feedback from playtesting sessions.
+            </p>
+            <p>
+                Achieving realistic and enjoyable grappling physics required extensive tuning. I implemented advanced physics algorithms to enhance player movement beyond the raw rope pendulum and adjusted the physics engine parameters to balance realism with fun gameplay.
+            </p>
+            <p>
+                Creating the demons was an interesting task, as it was crucial that the game contained as little AI as possible (or other randomisation). The only piece of randomisation the game contains is the angle at which demons shoot their fireballs at the player, as it varies ever so slightly. This adds another layer of challenge to the run, and avoids “ideal” runs where players can simply do the exact moves at exact timing for ideal results.
+            </p>
+            <p>
+                Ensuring the game ran smoothly on various devices was essential. I utilized Unreal Engine 5’s profiling tools to identify bottlenecks and optimize rendering, collision detection, and physics calculations.
+            </p>
+
+            <img src="../img/work/grapple_god/gameplay.png" alt="Gameplay Image">
+
+            <h2>Outcome and Feedback</h2>
+            <p>
+                "Grapple God" was met with positive feedback from both players and judges at SpeedJam #5. The game was praised for its innovative mechanics and challenging gameplay. It demonstrated our ability to rapidly develop a high-quality game under tight constraints, showcasing our skills in programming, art, and sound design.
+            </p>
+
+            <img src="../img/work/grapple_god/feedback.png" alt="Feedback Comments">
+
+            <p>
+                Thank you for reading! Please <a href="https://siropfraisecitron.itch.io/grapple-god" target="_blank">try playing the game on itch.io (click)</a> and let me know what you think!
+            </p>
+            <p>
+                Kamil
+            </p>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-left">
+            <h3>Get in Touch</h3>
+            <p>Reach out to me via my email,<br>connect with me on LinkedIn, or shoot me a message on X.</p>
+            <div class="social-icons">
+                <a href="https://twitter.com/kamil_gdev" target="_blank"><img src="../img/icons/twitter.png" alt="Twitter"></a>
+                <a href="https://www.linkedin.com/in/kamilpczarnecki/" target="_blank"><img src="../img/icons/linkedin-logo.png" alt="LinkedIn"></a>
+            </div>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:kamilpczarnecki@gmail.com"><img src="../img/icons/email.png" alt="Email"></a>
+            <a href="mailto:kamilpczarnecki@gmail.com" class="email-text">kamilpczarnecki@gmail.com</a>
+        </div>
+    </footer>
+</body>
+</html>
